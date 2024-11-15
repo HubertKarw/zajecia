@@ -1,9 +1,12 @@
 package zajecia6;
 
+import java.util.Scanner;
+
 public class zadanie3 {
     public static void main(String[] args) {
-        int number = 1;
-        for(int i=0;i<10;i++){
+        Scanner scanner= new Scanner(System.in);
+        int number = scanner.nextInt();
+        for(int i=0;i<=10;i++){
             System.out.println("number " + number + " * " + i + " = " + i * number);
         }
 

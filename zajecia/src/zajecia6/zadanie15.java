@@ -1,7 +1,5 @@
 package zajecia6;
 
-import java.sql.SQLOutput;
-
 public class zadanie15 {
     public static void main(String[] args) {
         int height = 5;

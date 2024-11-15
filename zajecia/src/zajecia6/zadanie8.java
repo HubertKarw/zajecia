@@ -9,26 +9,49 @@ public class zadanie8 {
         int y;
         Scanner scanner = new Scanner(System.in);
         do{
-            System.out.println("input option 1-add 2-minus 3- exit");
+            System.out.println("input option \"+\"-add \"-\"-minus, \"*\"-multiply, \"\\\"divide \"x\"- exit");
 
-            int n = 0;
-            n = scanner.nextInt();
+            String n = "c";
+            n = scanner.nextLine();
             switch (n){
-                case 1:
-                    System.out.println("opcja1");
+                case "+":
+                    System.out.println("add");
                     x = scanner.nextInt();
                     y = scanner.nextInt();
                     System.out.println(x+y);
+                    scanner.nextLine();
                     break;
-                case 2:
-                    System.out.println("opcja2");
+                case "-":
+                    System.out.println("subtract");
                     x = scanner.nextInt();
                     y = scanner.nextInt();
                     System.out.println(x-y);
+                    scanner.nextLine();
                     break;
-                case 3:
+                case "*":
+                    System.out.println("multiply");
+                    x = scanner.nextInt();
+                    y = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println(x*y);
+                    break;
+                case "/":
+                    System.out.println("divide");
+                    x = scanner.nextInt();
+                    y = scanner.nextInt();
+                    scanner.nextLine();
+                    if (y==0){
+                        System.out.println("cant divide by zero");
+                        break;
+                    }
+                    System.out.println(x/y);
+                    break;
+                case "x":
                     exit = 0;
                     break;
+                default:
+                    System.out.println("character not recognised");
+
             }
         }while(exit != 0);
     }

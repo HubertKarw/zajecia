@@ -2,7 +2,7 @@ package zajecia6;
 
 public class zadanie1 {
     public static void main(String[] args) {
-        for (int i =1; i<11; i++){
+        for (int i = 1; i < 11; i++) {
             System.out.println(i);
         }
     }
