@@ -1,6 +1,5 @@
 package klasy;
 
-import java.sql.SQLOutput;
 
 public class main {
     public static void main(String[] args) {

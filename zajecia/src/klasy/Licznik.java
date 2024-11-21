@@ -11,7 +11,7 @@ W metodzie main utwórz kilka obiektów klasy Licznik i wyświetl wartości obu 
     private int liczbaInstancji;
     private static int liczbaObiektow = 0;
 
-    Licznik(){
+    Licznik() {
         liczbaInstancji++;
     }
 

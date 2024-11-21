@@ -7,13 +7,13 @@ public class NewMain {
         /*
         zad8
          */
-        Punkt punkt = new Punkt(10,10);
+        Punkt punkt = new Punkt(10, 10);
         System.out.println(punkt.toString());
         /*
         zad 9
          */
         Kalkulator calc = new Kalkulator();
-        calc.obliczSume(10,10);
+        calc.obliczSume(10, 10);
         /*
         zad10
          */
@@ -32,22 +32,22 @@ public class NewMain {
 Pokaż, że wartości enum można porównywać za pomocą operatora ==.
 Napisz program, który porównuje dwie zmienne typu Kolor i wyświetla odpowiedni komunikat w zależności od wyniku porównania.
          */
-        if(czerwony == niebieski){
+        if (czerwony == niebieski) {
             System.out.println("ten sam kolor");
-        }else{
+        } else {
             System.out.println("inny kolor");
         }
         /*
         zad13
          */
         Matematyka matematyka = new Matematyka();
-        System.out.println(Matematyka.dodaj(1,2));
-        System.out.println(matematyka.pomnoz(1,2));
+        System.out.println(Matematyka.dodaj(1, 2));
+        System.out.println(matematyka.pomnoz(1, 2));
         /*
         zad17
          */
-        System.out.println(Matematyka.dodaj(1.1,1.2));
-        System.out.println(Matematyka.dodaj(1,1,1));
+        System.out.println(Matematyka.dodaj(1.1, 1.2));
+        System.out.println(Matematyka.dodaj(1, 1, 1));
         /*
         zad 18
          */
@@ -76,10 +76,10 @@ Napisz program, który porównuje dwie zmienne typu Kolor i wyświetla odpowiedn
     /*
     ZAD 20
      */
-        Licznik l =new Licznik();
-        Licznik l1 =new Licznik();
-        Licznik l2 =new Licznik();
-        Licznik l3 =new Licznik();
+        Licznik l = new Licznik();
+        Licznik l1 = new Licznik();
+        Licznik l2 = new Licznik();
+        Licznik l3 = new Licznik();
         System.out.println(Licznik.getLiczbaObiektow());
         System.out.println(l.getLiczbaInstancji());
     }

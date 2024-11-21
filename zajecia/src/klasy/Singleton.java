@@ -7,13 +7,15 @@ public class Singleton {
     zwracającą jedyną instancję tej klasy. W metodzie main spróbuj utworzyć obiekt klasy Singleton bezpośrednio
     (powinno to być niemożliwe) oraz za pomocą metody getInstance().
      */
-    private static Singleton single_instance =null;
+    private static Singleton single_instance = null;
     public String s;
-    private Singleton(){
+
+    private Singleton() {
         s = "Singleton Class String";
     }
-    public static  Singleton getInstance(){
-        if (single_instance == null){
+
+    public static Singleton getInstance() {
+        if (single_instance == null) {
             single_instance = new Singleton();
         }
         return single_instance;
