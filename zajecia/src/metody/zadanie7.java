@@ -9,10 +9,11 @@ W funkcji main utwórz tablicę, wywołaj metodę i wyświetl wynik.
  */
 public class zadanie7 {
     public static void main(String[] args) {
-        int[] numbers = {1,2,3,4,3};
+        int[] numbers = {1, 2, 3, 4, 3};
         System.out.println(average(numbers));
     }
-    private static double average(int[] numbers){
+
+    private static double average(int[] numbers) {
         return Arrays.stream(numbers).average().orElse(Double.NaN);
     }
 }

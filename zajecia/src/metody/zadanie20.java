@@ -14,13 +14,16 @@ public class zadanie20 {
     private static int countVowels(String text) {
         int count = 0;
         for (int i = 0; i < text.length(); i++) {
-            if(text.charAt(i)=='a'||
-                    text.charAt(i)=='e'||
-                    text.charAt(i)=='i'||
-                    text.charAt(i)=='o'||
-                    text.charAt(i)=='u'||
-                    text.charAt(i)=='y'
-            ){
+            if (text.charAt(i) == 'a' ||
+                    text.charAt(i) == 'e' ||
+                    text.charAt(i) == 'i' ||
+                    text.charAt(i) == 'o' ||
+                    text.charAt(i) == 'u' ||
+                    text.charAt(i) == 'ą' ||
+                    text.charAt(i) == 'ę' ||
+                    text.charAt(i) == 'ó' ||
+                    text.charAt(i) == 'y'
+            ) {
                 count++;
             }
 
@@ -31,13 +34,16 @@ public class zadanie20 {
     private static int countConsonants(String text) {
         int count = 0;
         for (int i = 0; i < text.length(); i++) {
-            if(text.charAt(i)!='a'&&
-                    text.charAt(i)!='e'&&
-                    text.charAt(i)!='i'&&
-                    text.charAt(i)!='o'&&
-                    text.charAt(i)!='u'&&
-                    text.charAt(i)!='y'
-            ){
+            if (text.charAt(i) != 'a' &&
+                    text.charAt(i) != 'e' &&
+                    text.charAt(i) != 'i' &&
+                    text.charAt(i) != 'o' &&
+                    text.charAt(i) != 'u' &&
+                    text.charAt(i) != 'ą' &&
+                    text.charAt(i) != 'ę' &&
+                    text.charAt(i) != 'ó' &&
+                    text.charAt(i) != 'y'
+            ) {
                 count++;
             }
 
@@ -48,7 +54,8 @@ public class zadanie20 {
     private static String reverseString(String text) {
         return zadanie17.reverseString(text);
     }
-//zad 10 zaj6
+
+    //zad 10 zaj6
     private static boolean isPalindrome(String text) {
         char[] charArray = text.toCharArray();
         boolean palindrome = true;

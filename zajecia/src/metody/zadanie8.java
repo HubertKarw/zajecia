@@ -9,12 +9,13 @@ oddzielone przecinkami. Wywołaj tę metodę w funkcji main.
  */
 public class zadanie8 {
     public static void main(String[] args) {
-        int[] array={1,2,32,4,5};
+        int[] array = {1, 2, 32, 4, 5};
         printArray(array);
     }
-    private static void printArray(int[] array){
+
+    private static void printArray(int[] array) {
         Arrays.stream(array)
-                .forEach(s->{
+                .forEach(s -> {
                     System.out.print(s);
                     System.out.print(", ");
                 });

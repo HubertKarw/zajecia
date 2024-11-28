@@ -1,4 +1,5 @@
 package metody;
+
 /*
 Zadanie 18
 Napisz metodę transposeMatrix(int[][] matrix), która przyjmuje dwuwymiarową kwadratową tablicę liczb całkowitych
@@ -26,14 +27,15 @@ public class zadanie18 {
             System.out.println();
         }
     }
-    private static int[][] transposeMatrix(int[][] matrix){
+
+    private static int[][] transposeMatrix(int[][] matrix) {
         int[][] outputMatrix = new int[matrix[1].length][matrix.length];
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 outputMatrix[i][j] = matrix[j][i];
             }
         }
-    return outputMatrix;
+        return outputMatrix;
     }
 
 }
