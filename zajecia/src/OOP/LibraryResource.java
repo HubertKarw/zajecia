@@ -17,6 +17,7 @@ dodając funkcjonalność polegającą na dodaniu użytkownika do tablicy rezerw
 W metodzie main wywołaj tę metodę na obiekcie Ksiazka i wyświetl zawartość tablicy rezerwacji.
  */
 public interface LibraryResource {
+
     void borrow();
 
     void returnResource();

@@ -22,7 +22,11 @@ public class Book extends Publication implements LibraryResource {
     public User[] getReservedList() {
         return reservedList;
     }
-
+    public void printReservedList(){
+        for (User u: reservedList) {
+            System.out.println(u);
+        }
+    }
     public void reserve(User user) {
         LibraryResource.super.reserve();
         for (int i = 0; i < reservedList.length; i++) {
