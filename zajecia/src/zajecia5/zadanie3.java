@@ -1,3 +1,5 @@
+package zajecia5;
+
 public class zadanie3 {
     public static void main(String[] args) {
         int tempertaure = 0;
