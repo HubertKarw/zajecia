@@ -1,3 +1,5 @@
+package zajecia5;
+
 public class zad9 {
     public static void main(String[] args) {
         int year = 2000;

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class NewMain {
     public static void main(String[] args) {
         /*
-        zad8
+        zajecia5.zad8
          */
         Punkt punkt = new Punkt(10, 10);
         System.out.println(punkt.toString());
@@ -15,13 +15,13 @@ public class NewMain {
         Kalkulator calc = new Kalkulator();
         calc.obliczSume(10, 10);
         /*
-        zad10
+        zajecia5.zad10
          */
         DzienTygodnia dzis = DzienTygodnia.CZWARTEK;
         dzis.printDay();
         System.out.println(dzis);
         /*
-        zad11
+        zajecia5.zad11
          */
         Kolor czerwony = Kolor.RED;
         Kolor niebieski = Kolor.BLUE;
