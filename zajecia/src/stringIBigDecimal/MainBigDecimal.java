@@ -158,7 +158,7 @@ public class MainBigDecimal {
         System.out.println("---ZADANIE 17---");
         System.out.println("input STRING");
         String text = scanner.nextLine();
-        System.out.println(text.replaceAll("[!.,\"\'?]","").replaceAll("\s+","\s"));
+        System.out.println(text.replaceAll("[!.,\"\'?]", "").replaceAll("\s+", "\s"));
 /*
 Zadanie 18
 Zliczanie samogłosek i spółgłosek
@@ -191,7 +191,7 @@ Wyświetla liczbę wystąpień tego słowa.
         System.out.println("input STRING");
         text = scanner.nextLine();
         String[] textSplit = text.split("\s");
-        Map<String, Long> result = Arrays.stream(textSplit).collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        Map<String, Long> result = Arrays.stream(textSplit).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         System.out.println(Collections.max(result.entrySet(), Map.Entry.comparingByValue()).getKey());
         System.out.println(Collections.max(result.entrySet(), Map.Entry.comparingByValue()).getValue());
 
@@ -212,12 +212,12 @@ Wyświetla wyniki dla każdego trybu zaokrąglania z dokładnością do dwóch m
         BigDecimal num1 = new BigDecimal(scanner.nextLine());
         System.out.println("input 2nd number");
         BigDecimal num2 = new BigDecimal(scanner.nextLine());
-        System.out.println(num1.divide(num2,2,RoundingMode.HALF_DOWN));
-        System.out.println(num1.divide(num2,2,RoundingMode.HALF_UP));
-        System.out.println(num1.divide(num2,2,RoundingMode.FLOOR));
-        System.out.println(num1.divide(num2,2,RoundingMode.CEILING));
-        System.out.println(num1.divide(num2,2,RoundingMode.UP));
-        System.out.println(num1.divide(num2,2,RoundingMode.DOWN));
+        System.out.println(num1.divide(num2, 2, RoundingMode.HALF_DOWN));
+        System.out.println(num1.divide(num2, 2, RoundingMode.HALF_UP));
+        System.out.println(num1.divide(num2, 2, RoundingMode.FLOOR));
+        System.out.println(num1.divide(num2, 2, RoundingMode.CEILING));
+        System.out.println(num1.divide(num2, 2, RoundingMode.UP));
+        System.out.println(num1.divide(num2, 2, RoundingMode.DOWN));
 
 
     }
