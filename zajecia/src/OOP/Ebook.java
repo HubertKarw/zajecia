@@ -32,13 +32,21 @@ public class Ebook extends ElectronicMedia implements LibraryResource, Electroni
 
     @Override
     public void borrow() {
-        if (this.copyCount > 0) {
+        if (isAvailable()) {
             System.out.println("Ebook został wypożyczony elektronicznie");
             this.copyCount--;
         } else {
             System.out.println("brak dostepnych kopii");
         }
 
+    }
+
+    public boolean isAvailable() {
+        if (copyCount > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
