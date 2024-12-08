@@ -1,4 +1,5 @@
 package generics;
+
 /*
 Zadanie 2
 Klasa generyczna z jednym polem
@@ -7,7 +8,7 @@ Utwórz klasę generyczną Holder<T> przechowującą pojedynczą wartość typu 
 Dodaj metody setValue(T value) i getValue() do ustawiania i pobierania wartości.
 W main utwórz obiekt Holder<String> oraz Holder<Integer>, ustaw wartości i wyświetl je.
  */
-public class Holder <T>{
+public class Holder<T> {
     T value;
 
     public T getValue() {

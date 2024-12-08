@@ -1,4 +1,5 @@
 package generics;
+
 /*
 Zadanie 7
 Interfejs generyczny i transformacja tablicy
@@ -8,7 +9,7 @@ Następnie napisz klasę StringLengthTransformer implementującą Transformer<St
 Napisz metodę generyczną transformArray(S[] source, Transformer<S,R> transformer, R[] destination), która wypełnia tablicę destination wynikami transformacji elementów z source.
 W main przetestuj ją na tablicy String[].
  */
-public interface Transformer <S, R>{
+public interface Transformer<S, R> {
     R transform(S source);
 
 }

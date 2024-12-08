@@ -1,11 +1,11 @@
 package generics;
 
-public class StringIntegerConverter extends TwoWayConverter<String,Integer>{
+public class StringIntegerConverter extends TwoWayConverter<String, Integer> {
     @Override
     public Integer convertForward(String s) {
-        try{
+        try {
             return Integer.valueOf(s);
-        }catch(NumberFormatException nfe){
+        } catch (NumberFormatException nfe) {
             System.out.println("this string cannot be converted");
         }
         return 0;
