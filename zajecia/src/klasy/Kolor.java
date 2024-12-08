@@ -8,7 +8,7 @@ Dodaj konstruktor do enumu, który inicjalizuje pole kodKoloru. Napisz metodę g
 W metodzie main użyj enumu i wyświetl nazwę koloru oraz jego kod.
      */
     RED("#FF0000"), GREEN("#00FF00"), BLUE("#0000FF");
-    String kodKoloru;
+    private final String kodKoloru;
 
     Kolor(String kodKoloru) {
         this.kodKoloru = kodKoloru;

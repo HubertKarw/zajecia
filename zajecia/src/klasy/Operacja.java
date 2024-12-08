@@ -24,7 +24,10 @@ W metodzie main pobierz od użytkownika dwie liczby i znak operacji, a następni
     },
     PODZIEL {
         public double wykonaj(double a, double b) {
-            return b != 0 ? a / b : 0;
+            if (b==0){
+                throw new IllegalArgumentException("Nie można dzielić przez zero!");
+            }
+            return a / b;
         }
     };
 
