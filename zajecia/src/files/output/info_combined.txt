@@ -1,0 +1,6 @@
+INFO: Koniec logów
+INFO: Uruchomienie aplikacji
+INFO: Połączenie z bazą danych
+INFO: Zakończono przetwarzanie danych
+INFO: Operacja zakończona pomyślnie
+INFO: Wysłano raport
