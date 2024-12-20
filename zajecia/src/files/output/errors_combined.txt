@@ -1,0 +1,5 @@
+ERROR: Błąd autoryzacji
+ERROR: Przekroczono czas oczekiwania
+ERROR: Błąd nieznany
+ERROR: Nie znaleziono pliku konfiguracyjnego
+ERROR: Limit przekroczony
