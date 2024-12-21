@@ -1,3 +1,5 @@
+package zajecia5;
+
 public class zad5 {
     public static void main(String[] args) {
         int score = 10;
