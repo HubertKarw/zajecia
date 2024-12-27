@@ -8,7 +8,20 @@ import java.util.stream.IntStream;
 public class MainStrings {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        /*
+        zadanie1(scanner);
+        zadanie2(scanner);
+        zadanie3(scanner);
+        zadanie4(scanner);
+        zadanie5(scanner);
+        zadanie6(scanner);
+        zadanie7(scanner);
+        zadanie8(scanner);
+        zadanie9(scanner);
+        zadanie10(scanner);
+    }
+
+    public static void zadanie1(Scanner scanner) {
+                /*
         Zadanie 1
 Podstawowe operacje na Stringach
 
@@ -19,6 +32,7 @@ Wyświetla długość obu łańcuchów (użyj metody length()).
 Sprawdza, czy oba łańcuchy są identyczne (użyj metody equals()).
 Łączy oba łańcuchy w jeden i wyświetla wynik.
          */
+
         System.out.println("---ZADANIE 1---");
         System.out.println("input 2 Strings");
         String str1 = scanner.nextLine();
@@ -26,19 +40,21 @@ Sprawdza, czy oba łańcuchy są identyczne (użyj metody equals()).
         System.out.println(String.format("String 1 length: %d, String 2 length: %d", str1.length(), str2.length()));
         System.out.println(String.format("String 1 and 2 are the same: %b String 1: %s, String 2: %s", str1.equals(str2), str1, str2));
         System.out.println(String.format("String 1 and 2 connected are:%s", str1.concat(str2)));
+    }
 
+    public static void zadanie2(Scanner scanner) {
         /*
-Zadanie 2
-Manipulacja znakami w Stringu
+        Zadanie 2
+        Manipulacja znakami w Stringu
 
-Napisz program, który:
+        Napisz program, który:
 
-Pobiera od użytkownika łańcuch znaków str.
-Wyświetla pierwszy i ostatni znak tego łańcucha (użyj metody charAt()).
-Tworzy podłańcuch zawierający znaki od trzeciego do szóstego (użyj metody substring()).
-Wyświetla podłańcuch.
+        Pobiera od użytkownika łańcuch znaków str.
+        Wyświetla pierwszy i ostatni znak tego łańcucha (użyj metody charAt()).
+                Tworzy podłańcuch zawierający znaki od trzeciego do szóstego (użyj metody substring()).
+                Wyświetla podłańcuch.
 
-         */
+                */
         System.out.println("---ZADANIE 2---");
         System.out.println("Input String");
         String str = scanner.nextLine();
@@ -48,7 +64,10 @@ Wyświetla podłańcuch.
         } catch (IndexOutOfBoundsException e) {
             System.out.println("string too small");
         }
-/*
+    }
+
+    public static void zadanie3(Scanner scanner) {
+        /*
 Zadanie 3
 Zmiana wielkości liter i usuwanie spacji
 
@@ -61,11 +80,15 @@ Wyświetla wynik
  */
         System.out.println("---ZADANIE 3---");
         System.out.println("input String");
-        str = scanner.nextLine();
+        String str = scanner.nextLine();
         //Dodałem nawiasy, żeby było widać usunięte spacje
         System.out.println(String.format("Trimmed String: [%s]", str.trim()));
         System.out.println(String.format("To Upper Case String: [%s]", str.toUpperCase(Locale.ROOT)));
-/*
+        System.out.println(String.format("Converted String: [%s]", str.toUpperCase(Locale.ROOT).trim()));
+    }
+
+    public static void zadanie4(Scanner scanner) {
+        /*
 Zadanie 4
 Wyszukiwanie podłańcucha
 
@@ -86,6 +109,9 @@ Jeśli nie, wyświetla odpowiedni komunikat.
         } else {
             System.out.println(String.format("There is no subtext: %s, in String: %s", subtext, text));
         }
+    }
+
+    public static void zadanie5(Scanner scanner) {
         /*
         Zadanie 5
 Zamiana znaków w Stringu
@@ -98,23 +124,29 @@ Wyświetla oryginalny i zmodyfikowany łańcuch.
          */
         System.out.println("---ZADANIE 5---");
         System.out.println("Input String");
-        str = scanner.nextLine();
+        String str = scanner.nextLine();
         System.out.println(String.format("Your string: %s, string where a is replaced with e: %s", str, str.replaceAll("a", "e")));
-/*
-Zadanie 6
-Porównywanie Stringów
+    }
 
-Napisz program, który:
+    public static void zadanie6(Scanner scanner) {
+        /*
+        Zadanie 6
+        Porównywanie Stringów
 
-Pobiera od użytkownika dwa łańcuchy znaków str1 i str2.
-Sprawdza, czy łańcuchy znaków są takie same bez względu na wielkość liter (użyj metody equalsIgnoreCase()).
-Wyświetla odpowiedni komunikat.
- */
+        Napisz program, który:
+
+        Pobiera od użytkownika dwa łańcuchy znaków str1 i str2.
+                Sprawdza, czy łańcuchy znaków są takie same bez względu na wielkość liter (użyj metody equalsIgnoreCase()).
+        Wyświetla odpowiedni komunikat.
+                */
         System.out.println("---ZADANIE 6---");
         System.out.println("input 2 Strings");
-        str1 = scanner.nextLine();
-        str2 = scanner.nextLine();
+        String str1 = scanner.nextLine();
+        String str2 = scanner.nextLine();
         System.out.println(String.format("String 1 and 2 are the same: %b String 1: %s, String 2: %s", str1.equalsIgnoreCase(str2), str1, str2));
+    }
+
+    public static void zadanie7(Scanner scanner) {
         /*
         Zadanie 7
 Sprawdzenie prefiksu i sufiksu
@@ -130,6 +162,9 @@ Wyświetla odpowiedni komunikat.
         String filename = scanner.nextLine();
         System.out.println(String.format("String: %s contains \"data_\" at the start : %b, and \".txt\" at the end: %b",
                 filename, filename.startsWith("data_"), filename.endsWith(".txt")));
+    }
+
+    public static void zadanie8(Scanner scanner) {
         /*
 Zadanie 8
 Rozbijanie Stringa na tablicę
@@ -145,6 +180,9 @@ Wyświetla każde słowo w osobnej linii.
         String listString = scanner.nextLine();
         String[] list = listString.split(",");
         Arrays.stream(list).forEach(System.out::println);
+    }
+
+    public static void zadanie9(Scanner scanner) {
         /*
         Zadanie 9
 Palindrom
@@ -158,7 +196,7 @@ Wyświetla odpowiedni komunikat.
          */
         System.out.println("---ZADANIE 9---");
         System.out.println("Input String");
-        str = scanner.nextLine();
+        String str = scanner.nextLine();
         String palindromeString = str.toLowerCase(Locale.ROOT).replaceAll(" ", "");
         System.out.println(String.format("String is a palindrome: %b",
                 IntStream.range(0, palindromeString.length() / 2)
@@ -166,6 +204,9 @@ Wyświetla odpowiedni komunikat.
                         .allMatch
                                 (i -> palindromeString.charAt(i) == palindromeString.charAt(palindromeString.length() - i - 1))
         ));
+    }
+
+    public static void zadanie10(Scanner scanner) {
         /*
         Zadanie 10
 Zliczanie wystąpień słowa
@@ -178,14 +219,14 @@ Wyświetla wynik.
          */
         System.out.println("---ZADANIE 10---");
         System.out.println("Input text");
-        text = scanner.nextLine();
+        String text = scanner.nextLine();
         System.out.println("Input word");
         String word = scanner.nextLine();
         System.out.println(String.format("Text : \"%s\" contains word \"%s\" [%d] times", text, word,
                 ("\"" + text + "\"")
-                .toLowerCase(Locale.ROOT)
-                .split(word)
-                .length - 1
+                        .toLowerCase(Locale.ROOT)
+                        .split(word)
+                        .length - 1
         ));
         //Jeżeli poszukujemy słowa i wiemy, że będzie ono rodzielone spacją moża użyć streamu/pętli
         // który/która zlicza pojawienia się danego słowa w arrayu zesplitowanym spacją przykład na dole,
@@ -201,8 +242,6 @@ Wyświetla wynik.
 //                        .peek(s -> System.out.println("filtered: " +s))
                         .count()
         ));
-/*
-End of Strings
- */
     }
+
 }
