@@ -6,30 +6,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-//        try {
-//            System.out.println(calculateSumToN(-9));
-//        } catch (NegativeNumberException e) {
-//            e.printStackTrace();
-//        }
-//        Scanner scanner = new Scanner(System.in);
-//        String string = scanner.nextLine();
-//        try {
-//            System.out.println(convertStringToInt(string));
-//        } catch (NumberFormatException nfe) {
-//            System.out.println("wrong string format");
-//        }
-//        try {
-//            System.out.println(divide(1, 0));
-//        } catch (ArithmeticException ae) {
-//            ae.printStackTrace();
-//        }
+        calculateTask(9);
+        Scanner scanner = new Scanner(System.in);
+        String string = scanner.nextLine();
+        convertTask(string);
+        divideTask(1,0);
         int[] array = {0, 1, 2, 3, 4, 5};
-//        try {
-//            System.out.println(getElement(array, 4));
-//        } catch (InvalidIndexException iie) {
-//            iie.printStackTrace();
-//        }
+        elementTask(array,4);
+
 //        methodA();
+//        aby wykonać metode a trzeba ją wykonać w bloku try catch
     /*
     Zadanie 9
 Wielokrotne catch
@@ -42,19 +28,7 @@ W obu przypadkach wyświetl odpowiedni komunikat błędu.
 
      */
 //        Scanner scanner = new Scanner(System.in);
-//        System.out.println("podaj 2 indexy");
-//
-//        try{
-//            int n1 = scanner.nextInt();
-//            int n2 = scanner.nextInt();
-//            System.out.println(array[n1] + array[n2]);
-//        }catch (InputMismatchException ime){
-//            ime.printStackTrace();
-//            System.out.println("zly input");
-//        } catch (ArrayIndexOutOfBoundsException exception) {
-//            exception.printStackTrace();
-//            System.out.println("index nie istniwjw");
-//        }
+        zadanie9(array);
         /*
         Zadanie 10
 Zagnieżdżone bloki try-catch
@@ -67,33 +41,10 @@ Wewnątrz tego bloku try, zagnieżdżony blok try powinien obliczyć odwrotnoś�
 Obsłuż ArrayIndexOutOfBoundsException, jeśli indeks jest poza zakresem.
 W zagnieżdżonym bloku try obsłuż ArithmeticException, jeśli wartość elementu to zero.
          */
-////        System.out.println(1/0);
-//        int index = scanner.nextInt();
-//        try {
-//            System.out.println(array[index]);
-//            try {
-//                System.out.println( 1/array[index]);
-//            }catch (ArithmeticException ae){
-//                ae.printStackTrace();
-//                System.out.println("arithmetic error");
-//            }
-//        }catch (ArrayIndexOutOfBoundsException e){
-//            e.printStackTrace();
-//            System.out.println("no such index");
-//        }
-//        try {
-//            System.out.println(fibonacci(5));
-//            System.out.println(fibonacci(-1));
-//        }catch (IllegalArgumentException iae){
-//            iae.printStackTrace();
-//        }
-        Scanner sc = new Scanner(System.in);
-        String login = sc.nextLine();
-        try {
-            checkLogin(login);
-        } catch (SecurityException se) {
-            System.out.println("login cannot be empty");
-        }
+        zadanie10(scanner,array);
+        fibonacciTask(10);
+        fibonacciTask(-10);
+        login();
         System.out.println("koniec programu");
     }
 
@@ -106,6 +57,13 @@ W zagnieżdżonym bloku try obsłuż ArithmeticException, jeśli wartość eleme
                 sum += i;
             }
             return sum;
+        }
+    }
+    public static void calculateTask(int n){
+        try {
+            System.out.println(calculateSumToN(n));
+        } catch (NegativeNumberException e) {
+            e.printStackTrace();
         }
     }
 
@@ -125,6 +83,13 @@ kontrolowanym a niekontrolowanym, wyjaśniając, dlaczego NumberFormatException 
 
         return number;
     }
+    public static void convertTask(String string){
+        try {
+            System.out.println(convertStringToInt(string));
+        } catch (NumberFormatException nfe) {
+            System.out.println("wrong string format");
+        }
+    }
 
     /*
     Zadanie 6
@@ -139,12 +104,26 @@ ArithmeticException. Zadeklaruj ten wyjątek za pomocą słowa kluczowego throws
         }
         return (double) a / b;
     }
+    public static void divideTask(int a, int b){
+        try {
+            System.out.println(divide(a, b));
+        } catch (ArithmeticException ae) {
+            ae.printStackTrace();
+        }
+    }
 
     public static int getElement(int[] array, int index) throws InvalidIndexException {
         if (index >= array.length) {
             throw new InvalidIndexException();
         } else {
             return array[index];
+        }
+    }
+    public static void elementTask(int[] array, int index){
+        try {
+            System.out.println(getElement(array, index));
+        } catch (InvalidIndexException iie) {
+            iie.printStackTrace();
         }
     }
 
@@ -177,15 +156,20 @@ i obsłuż wyjątek.
 
      */
     private static int fibonacci(int n) throws IllegalArgumentException {
-        if (n < 0) {
-            throw new IllegalArgumentException();
-        }
+        SquareRoot.assertValidArgument(n);
         if (n == 1) {
             return 1;
         } else if (n == 2) {
             return 1;
         } else {
             return fibonacci(n - 1) + fibonacci(n - 2);
+        }
+    }
+    public static void fibonacciTask(int n){
+        try {
+            System.out.println(fibonacci(-1));
+        }catch (IllegalArgumentException iae){
+            iae.printStackTrace();
         }
     }
 
@@ -201,4 +185,44 @@ i obsłuż wyjątek.
             throw new SecurityException();
         }
     }
+    public static void login(){
+        Scanner sc = new Scanner(System.in);
+        String login = sc.nextLine();
+        try {
+            checkLogin(login);
+        } catch (SecurityException se) {
+            System.out.println("login cannot be empty");
+        }
+    }
+    public static void zadanie9(int[] array){
+        System.out.println("podaj 2 indexy");
+        Scanner scanner = new Scanner(System.in);
+        try{
+            int n1 = scanner.nextInt();
+            int n2 = scanner.nextInt();
+            System.out.println(array[n1] + array[n2]);
+        }catch (InputMismatchException ime){
+            ime.printStackTrace();
+            System.out.println("zly input");
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            exception.printStackTrace();
+            System.out.println("index nie istniwjw");
+        }
+    }
+    public static void zadanie10(Scanner scanner, int[] array){
+        int index = scanner.nextInt();
+        try {
+            System.out.println(array[index]);
+            try {
+                System.out.println( 1/array[index]);
+            }catch (ArithmeticException ae){
+                ae.printStackTrace();
+                System.out.println("arithmetic error");
+            }
+        }catch (ArrayIndexOutOfBoundsException e){
+            e.printStackTrace();
+            System.out.println("no such index");
+        }
+    }
+
 }

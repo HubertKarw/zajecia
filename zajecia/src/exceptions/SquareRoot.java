@@ -40,18 +40,20 @@ public class SquareRoot {
     public static double calculateSquareRoot(int number) {
         double sqrt = -1;
         try {
-            if (number < 0) {
-                throw new IllegalArgumentException("Error: Number cannot be negative");
-            }
+            assertValidArgument(number);
             sqrt = Math.sqrt(number);
         } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());
-            ;
         } finally {
             System.out.println("Calculation completed");
         }
         return sqrt;
 
+    }
+    public static void assertValidArgument(int number) throws IllegalArgumentException{
+         if(number < 0){
+             throw new IllegalArgumentException("Error: Number cannot be negative");
+         }
     }
 }
 
