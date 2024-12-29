@@ -7,12 +7,16 @@ public class StringIntegerConverter extends TwoWayConverter<String, Integer> {
             return Integer.valueOf(s);
         } catch (NumberFormatException nfe) {
             System.out.println("this string cannot be converted");
+            throw new IllegalArgumentException();
         }
-        return 0;
+
     }
 
     @Override
     public String convertBackword(Integer integer) {
+        if(integer.toString() == null){
+            throw new IllegalArgumentException("integer is null");
+        }
         return integer.toString();
     }
 }

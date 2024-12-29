@@ -9,7 +9,7 @@ Dodaj metody setValue(T value) i getValue() do ustawiania i pobierania wartości
 W main utwórz obiekt Holder<String> oraz Holder<Integer>, ustaw wartości i wyświetl je.
  */
 public class Holder<T> {
-    T value;
+    private T value;
 
     public T getValue() {
         return value;

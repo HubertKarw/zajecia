@@ -29,18 +29,16 @@ public class GenericArray<T> {
     public void set(int index, T value) {
         try {
             this.array[index] = value;
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("no index");
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
     }
 
     public <T> T get(int index) {
-//        System.out.println(this.array[index]);
         try {
             return (T) this.array[index];
         } catch (IndexOutOfBoundsException e) {
             System.out.println("no index, returning last object");
-            e.getMessage();
             return (T) this.array[array.length - 1];
         }
 
