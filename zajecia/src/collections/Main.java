@@ -39,7 +39,7 @@ public class Main {
         Usuń element o wartości 3 i wyświetl listę ponownie, aby sprawdzić czy został usunięty.
          */
         List<Integer> intList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
-        intList.get(2);
+        System.out.println(intList.get(2));
         intList.remove((Integer) 3);
         intList.forEach(System.out::println);
 
@@ -51,11 +51,7 @@ public class Main {
     Utwórz Set<String> i dodaj do niego kilka powtarzających się napisów, np. "Apple", "Banana", "Apple", "Cherry".
     Wyświetl zawartość seta i sprawdź, że duplikaty nie występują.
      */
-        Set<String> stringSet = new HashSet<>();
-        stringSet.add("Apple");
-        stringSet.add("Banana");
-        stringSet.add("Apple");
-        stringSet.add("Cherry");
+        Set<String> stringSet = new HashSet<>(Set.of("Apple", "Banana", "Apple", "Cherry"));
         System.out.println(stringSet);
     }
 
@@ -65,10 +61,11 @@ public class Main {
         Utwórz Map<String, Integer> i dodaj do niej pary klucz-wartość odpowiadające np. produktom i ich cenom. Wyświetl wszystkie klucze,
         wszystkie wartości oraz każdą parę klucz-wartość (użyj entrySet()).
         */
-        Map<String, Integer> map = new HashMap<>();
-        map.put("Apple", 10);
-        map.put("Banana", 12);
-        map.put("Orange", 13);
+        Map<String, Integer> map = Map.of(
+                "Apple", 10,
+                "Banana", 12,
+                "Orange", 13
+        );
         System.out.println(map.keySet());
         System.out.println(map.values());
         System.out.println(map.entrySet());
@@ -80,14 +77,14 @@ Zadanie 5
 Utwórz Queue<String> (np. LinkedList jako implementację), dodaj kilka elementów i symuluj działanie kolejki:
 pobierz (poll) element z kolejki i wyświetl go, a następnie pokaż stan kolejki po usunięciu elementu.
  */
-        Queue<String> kolejka = new LinkedList<>();
-        kolejka.add("str");
-        kolejka.add("str2");
-        kolejka.add("str3");
-        kolejka.add("str4");
-        System.out.println(kolejka);
-        kolejka.poll();
-        System.out.println(kolejka);
+        Queue<String> queue = new LinkedList<>();
+        queue.offer("str");
+        queue.offer("str2");
+        queue.offer("str3");
+        queue.offer("str4");
+        System.out.println(queue);
+        queue.poll();
+        System.out.println(queue);
     }
 
     public static void zad6() {
@@ -114,10 +111,13 @@ a następnie zdejmij (pop) kilka z nich, wyświetlając za każdym razem element
 Zadanie 7
 Utwórz List<Integer> z losowymi liczbami i posortuj ją korzystając z Collections.sort(). Wyświetl listę przed i po sortowaniu.
  */
-        List<Integer> list = new ArrayList<>(Arrays.asList((int) (Math.random() * 100), (int) (Math.random() * 100), (int) (Math.random() * 100)));
+        List<Integer> list = new ArrayList<>(Arrays.asList(randomInt(), randomInt(), randomInt()));
         System.out.println(list);
         Collections.sort(list);
         System.out.println(list);
+    }
+    public static int randomInt(){
+        return (int) (Math.random() * 100);
     }
 
     public static void zad8() {
@@ -164,10 +164,11 @@ Wypisz ile jest "Banany" używając get(). Jeśli klucz nie istnieje, wypisz że
         map.put("Orange", 13);
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        if (map.get(input) == null) {
+        Integer count = map.get(input);
+        if (count == null) {
             System.out.println("no such product");
         } else {
-            System.out.println(map.get(input));
+            System.out.println(count);
         }
     }
 
