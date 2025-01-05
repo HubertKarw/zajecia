@@ -18,6 +18,12 @@ public class Main {
         findPositive(Optional.of(5)).ifPresentOrElse(System.out::println,
                 () -> System.out.println("empty")
         );
+        findPositive(Optional.empty()).ifPresentOrElse(System.out::println,
+                () -> System.out.println("empty")
+        );
+        findPositive(Optional.ofNullable(null)).ifPresentOrElse(System.out::println,
+                () -> System.out.println("empty")
+        );
         Consumer<String> action = System.out::println;
         processIfPresent(Optional.empty(), action);
         String[] stringArr = {"apple", "banana", "cherry"};
@@ -31,7 +37,8 @@ public class Main {
         Predicate<Integer> condition1 = x -> x > 5;
         Predicate<Integer> condition2 = x -> x < 20;
         int[] array = {1, 10, 15, 25};
-        System.out.println(Arrays.toString(filterWithCombinedPredicate(array, condition1, condition2)));
+        Integer[] arrayInteger = {1, 10, 15, 25};
+        System.out.println(Arrays.toString(filterWithCombinedPredicate(arrayInteger, condition1, condition2)));
         Function<String, String> first = s -> s.toUpperCase(Locale.ROOT);
         Function<String, String> second = s -> s + "!!!";
         System.out.println(applyFunction("java", first, second));
@@ -61,8 +68,8 @@ public class Main {
         System.out.println(flatMapToInt(opt112));
         //14
 
-        System.out.println(transformAndSum(array, ((n) -> n * 2)));
-        System.out.println(transformAndSum(array, ((n) -> n * n)));
+        System.out.println(transformAndSum(arrayInteger, ((n) -> n * 2)));
+        System.out.println(transformAndSum(arrayInteger, ((n) -> n * n)));
         //15
         partitionArray(array, (x -> x >= 10), ((x) -> System.out.println("Large: " + x)), ((x) -> System.out.println("small: " + x)));
     }
@@ -80,12 +87,12 @@ W main wywołaj metodę dla {1,3,5,8,10} oraz dla pustej tablicy i wyświetl wyn
         Optional<Integer> optional = Optional.empty();
         for (int i = 0; i < numbers.length; i++) {
             if (numbers[i] % 2 == 0) {
-                optional = Optional.of(numbers[i]);
-                return optional;
+                return Optional.of(numbers[i]);
             }
         }
 
-        return optional;
+        return Optional.empty();
+
     }
 
     public static Optional<String> mapToUppercase(Optional<String> optional) {
@@ -109,7 +116,9 @@ Sprawdza, czy wartość w Optional jest dodatnia (użyj filter i lambdy).
 Zwraca oryginalny Optional jeśli warunek jest spełniony, w przeciwnym wypadku Optional.empty().
 W main przetestuj dla Optional.of(5), Optional.of(-3) i Optional.empty().
          */
-
+        if (number == null) {
+            return Optional.empty();
+        }
         return number.filter(x -> x > 0);
     }
 
@@ -141,7 +150,7 @@ W main przetestuj metodę, przekazując lambdę wypisującą wartość na ekran.
         return result.toArray(new String[0]);
     }
 
-    public static Integer[] filterWithCombinedPredicate(int[] array, Predicate<Integer> condition1, Predicate<Integer> condition2) {
+    public static Integer[] filterWithCombinedPredicate(Integer[] array, Predicate<Integer> condition1, Predicate<Integer> condition2) {
         /*
         Zadanie 7
 Napisz metodę filterWithCombinedPredicate(int[] array, Predicate<Integer> condition1, Predicate<Integer> condition2), która:
@@ -149,8 +158,6 @@ Napisz metodę filterWithCombinedPredicate(int[] array, Predicate<Integer> condi
 Zwraca tablicę liczb spełniających oba warunki (condition1.and(condition2)).
 W main przetestuj na tablicy {1,10,15,25} szukając liczb >5 i <20.
          */
-//        return  IntStream.of(array).filter(condition1.and(condition2)).toArray();
-//        return (int[]) Arrays.stream(array).filter(condition1.and(condition2));
         List<Integer> result = new ArrayList<>();
 //        result.toArray();
         for (int i : array) {
@@ -170,6 +177,9 @@ Najpierw stosuje first do input.
 Następnie wynik przekazuje do second.
 W main przetestuj metodę z Function zmieniającą napis na wielkie litery i taką, która dodaje "!!!" na końcu.
  */
+        if (input == null || first == null || second == null) {
+            throw new IllegalArgumentException("Input and functions must not be null");
+        }
         return first.andThen(second).apply(input);
     }
 
@@ -181,6 +191,9 @@ Wykonuje operację zdefiniowaną w BiFunction na dwóch liczbach całkowitych.
 W main przetestuj z lambdami dodającymi, mnożącymi i odejmującymi.
      */
     public static int calculate(int a, int b, BiFunction<Integer, Integer, Integer> operation) {
+        if (operation == null) {
+            throw new IllegalArgumentException("operation can not be null");
+        }
         return operation.apply(a, b);
     }
 
@@ -203,8 +216,7 @@ Jeśli opt ma wartość, zwraca długość tego łańcucha (użyj map i lambdy),
 W main przetestuj dla Optional.of("lambda") i Optional.empty().
      */
     public static int getLengthOrZero(Optional<String> opt) {
-        String s = opt.orElseGet(() -> "");
-        return s.length();
+        return opt.map(String::length).orElse(0);
     }
 
     /*
@@ -219,8 +231,11 @@ W main przetestuj, łącząc dwie nazwy np. "Hello" i "World".
         if (opt1.isEmpty() || opt2.isEmpty()) {
             return Optional.empty();
         } else {
-            return Optional.of(combiner.apply(opt1.get(), opt2.get()));
+            return opt1.flatMap(value1 ->
+                    opt2.map(value2 -> combiner.apply(value1, value2))
+            );
         }
+
     }
 
     /*
@@ -232,8 +247,13 @@ Zwraca Optional<Integer> z wynikiem lub pusty Optional jeśli parse się nie uda
 W main przetestuj dla "123", "abc" i pustego Optional.
      */
     public static Optional<Integer> flatMapToInt(Optional<String> opt) {
-        Optional<Integer> optional = opt.flatMap(s -> Optional.of(Integer.valueOf(s)));
-        return optional;
+        return opt.flatMap(s -> {
+            try {
+                return Optional.of(Integer.valueOf(s));
+            } catch (NumberFormatException nfe) {
+                return Optional.empty();
+            }
+        });
     }
 
     /*
@@ -244,9 +264,8 @@ Stosuje transformer do każdego elementu tablicy i sumuje wyniki.
 Zwraca sumę.
 W main przetestuj z lambdą podwajającą liczby i lambdą zwracającą kwadrat liczby.
      */
-    public static int transformAndSum(int[] array, Function<Integer, Integer> transformer) {
-        return Arrays.stream(array).map(transformer::apply).reduce(0, Integer::sum);
-
+    public static int transformAndSum(Integer[] array, Function<Integer, Integer> transformer) {
+        return Arrays.stream(array).map(transformer).reduce(0, Integer::sum);
     }
 
     /*
