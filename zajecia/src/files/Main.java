@@ -1,112 +1,87 @@
 package files;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        if (createOutput()) {
-            System.out.println("output directory created");
-        } else {
-            System.out.println("output directory already exists");
-        }
-        File[] files = getAllFiles();
-        int resultFilesNumber = files.length;
-        if (resultFilesNumber == 0) {
-            System.out.println("Brak plików do przetworzenia");
-            return;
-        }
-        System.out.println("reszta programu");
-        ArrayList<String> allLines = new ArrayList<>();
-        for (File f : files) {
-            System.out.println(f);
-            allLines.addAll(readFileIntoList(f));
-        }
-        int resultLinesNumber = allLines.size();
-        long resultInfoLinesNumber = countInfoLines(allLines);
-        long resultErrorLinesNumber = countErrorLines(allLines);
-        long resultWarnLinesNumber = countWarnLines(allLines);
-        String errorAbsolutePath = combinedFile(allLines, "ERROR", "errors_combined");
-        String infoAbsolutePath = combinedFile(allLines, "INFO", "info_combined");
-        System.out.println(String
-                .format("Number of files: %d \nNumber of all lines: %d\nNumber of:\n\twarn: %d\n\terror: %d\n\tinfo: %d\nerrors path: %s \ninfo path: %s"
-                        , resultFilesNumber, resultLinesNumber, resultWarnLinesNumber, resultErrorLinesNumber, resultInfoLinesNumber
-                        , errorAbsolutePath, infoAbsolutePath));
-//        System.out.println(allLines.toString());
-    }
 
-    public static boolean createOutput() {
-        return new File("zajecia/src/files/output").mkdirs();
     }
+/*
+Zadanie 1
+Napisz program, który:
 
-    public static File[] getAllFiles() {
-        File dir = new File("zajecia/src/files/input");
-        File[] directories = dir.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.endsWith(".txt");
-            }
-        });
-//        System.out.println(Arrays.toString(directories));
-        return directories;
-    }
+Sprawdza, czy w bieżącym katalogu istnieje plik notes.txt.
+Jeśli nie istnieje, utwórz go i zapisz w nim linijkę tekstu: "Notatki startowe".
+Jeśli istnieje, wyświetl jego rozmiar w bajtach oraz datę ostatniej modyfikacji.
+*/
+    public static void
+/*
+Zadanie 2
+Napisz program, który:
 
-    public static ArrayList<String> readFileIntoList(File file) {
-        ArrayList<String> lines = new ArrayList<>();
-        try {
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-//                System.out.println(line);
-                lines.add(line);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return lines;
-    }
+Odczytuje z pliku config.ini pojedyncze linie tekstu (każda linia to np. klucz=wartość).
+Wyświetla odczytane linie na ekranie.
+Jeśli plik nie istnieje, utwórz go i zapisz w nim "config=default".
+*/
+/*
+Zadanie 3
+Napisz program, który:
 
-    public static long countInfoLines(ArrayList<String> lines) {
-        return lines.stream()
-                .filter(l -> l.contains("INFO"))
-                .count();
-    }
+Używając File, sprawdza czy istnieje katalog o nazwie backup.
+Jeśli nie istnieje, utwórz go.
+W katalogu backup utwórz plik log.txt i zapisz w nim jedną linijkę tekstu. Następnie wyświetl ścieżkę absolutną do tego pliku.
+*/
+/*
+Zadanie 4
+Napisz program, który:
 
-    public static long countErrorLines(ArrayList<String> lines) {
-        return lines.stream()
-                .filter(l -> l.contains("ERROR"))
-                .count();
-    }
+Używając FileReader i BufferedReader, odczyta cały plik tekstowy data.txt i wypisze jego zawartość linia po linii.
+Wypisz również informację o liczbie wczytanych linii.
+*/
+/*
+Zadanie 5
+Napisz program, który:
 
-    public static long countWarnLines(ArrayList<String> lines) {
-        return lines.stream()
-                .filter(l -> l.contains("WARN"))
-                .count();
-    }
+Używając FileWriter i PrintWriter, zapisze kilka linii tekstu do pliku report.txt. Każda linia powinna zawierać dane typu: "Linia X", gdzie X to numer linii.
+Zapisz np. 5 linii i wyświetl komunikat "Zapisano 5 linii do report.txt".
+*/
+/*
+Zadanie 6
+Napisz program, który:
 
-    public static String combinedFile(ArrayList<String> lines, String containsText, String fileName) {
-        try {
-            String path = "zajecia/src/files/output/" + fileName + ".txt";
-            new File(path).createNewFile();
-            FileWriter errorsWriter = new FileWriter(path);
-            lines.stream()
-                    .filter(l -> l.contains(containsText))
-                    .forEach(line -> {
-                        try {
-                            errorsWriter.append(line + "\n");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-            errorsWriter.close();
-            return new File(path).getAbsolutePath();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+Za pomocą Files i Paths sprawdzi istnienie pliku info.txt.
+Jeśli plik istnieje, skopiuje go do copy_info.txt (nadpisując, jeśli copy_info.txt już istnieje), używając Files.copy().
+Jeśli plik nie istnieje, wyświetl komunikat "Brak pliku info.txt".
+*/
+/*
+Zadanie 7
+Napisz program, który:
 
-        return "";
-    }
+Używając Scanner oraz File, wczyta plik numbers.txt zawierający liczby całkowite (jedna liczba na linię).
+Obliczy sumę wszystkich liczb i wyświetli ją na ekranie.
+Jeśli plik nie istnieje, wyświetl komunikat "Brak pliku numbers.txt".
+*/
+/*
+Zadanie 8
+Napisz program, który:
+
+Używając FileInputStream i FileOutputStream, skopiuje plik binarny (np. obraz picture.jpg) do pliku picture_copy.jpg.
+Po zakończeniu kopiowania wyświetl komunikat "Kopiowanie zakończone pomyślnie".
+Zadbaj o użycie bufora (np. tablicy bajtów) dla wydajności.
+*/
+/*
+Zadanie 9
+Napisz program, który:
+
+Używając Files.walk() przejdzie rekurencyjnie po katalogu logs.
+Wypisze nazwy wszystkich plików .log znalezionych w tym katalogu i podkatalogach.
+Jeśli katalog logs nie istnieje, wyświetl komunikat "Brak katalogu logs".
+*/
+/*
+Zadanie 10
+Napisz program, który:
+
+Używając Files.lines(), wczyta plik large_data.txt, który może być duży.
+Za pomocą strumieni i metody filter() przefiltruje linie, które zawierają słowo "ERROR".
+Policzy ile takich linii jest i wyświetli wynik.
+Jeśli plik nie istnieje, wypisz komunikat "Plik large_data.txt nie istnieje".
+ */
 }
