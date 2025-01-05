@@ -32,8 +32,9 @@ public class Exercises {
 //        System.out.println(getUserPerCompany());
 //        Predicate<User> userPredicate = (user) -> user.getAge()==22;
 //        System.out.println(getUser(userPredicate).getFirstName());
-        showAllUser();
+//        showAllUser();
 //        getCurenciesSet().stream().forEach(System.out::println);
+        System.out.println(createAccountsMap().size());
     }
 
     /**
@@ -52,8 +53,10 @@ public class Exercises {
      */
     public static List<String> getHoldingNames() {
         return holdings.stream()
+                .filter(Objects::nonNull)
                 .map(Holding::getName)
-                .map(String::toUpperCase).collect(Collectors.toList());
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -63,8 +66,9 @@ public class Exercises {
     public static String getHoldingNamesAsString() {
         return holdings.stream()
                 .map(Holding::getName)
-                .reduce("", (result, company) -> result + company + " ")
-                .strip();
+                .sorted()
+                .collect(Collectors.joining(", "));
+
     }
 
     /**
@@ -83,7 +87,8 @@ public class Exercises {
     public static long getAllUserAmount() {
         return holdings.stream()
                 .flatMap(h -> h.getCompanies().stream())
-                .flatMap(c -> c.getUsers().stream()).count();
+                .flatMap(c -> c.getUsers().stream())
+                .count();
     }
 
     /**
@@ -91,7 +96,8 @@ public class Exercises {
      * po zakończeniu działania strumienia.
      */
     public static LinkedList<String> getAllCompaniesNamesAsLinkedList() {
-        return holdings.stream().flatMap(h -> h.getCompanies().stream())
+        return holdings.stream()
+                .flatMap(h -> h.getCompanies().stream())
                 .map(Company::getName)
                 .collect(Collectors.toCollection(LinkedList::new));
     }
@@ -100,10 +106,13 @@ public class Exercises {
      * Przelicza kwotę na rachunku na złotówki za pomocą kursu określonego w enum Currency.
      */
     public static BigDecimal getAccountAmountInPLN(Account account) {
-
+        if (account == null) {
+            System.out.println("account does not exist");
+            return BigDecimal.ZERO.stripTrailingZeros();
+        }
         return account.getAmount()
                 .multiply(BigDecimal.valueOf(account.getCurrency().getRate()))
-                .setScale(2,RoundingMode.HALF_UP);
+                .setScale(2, RoundingMode.HALF_UP);
     }
 
     /**
@@ -137,7 +146,6 @@ public class Exercises {
                 .flatMap(c -> c.getUsers().stream())
                 .filter(user -> user.getSex().equals(Sex.WOMAN))
                 .max(Comparator.comparing(Exercises::getUserAmountInPLN));
-//        return Optional.empty();
     }
 
     private static BigDecimal getUserAmountInPLN(final User user) {
@@ -162,7 +170,7 @@ public class Exercises {
     public static Map<String, List<User>> getUserPerCompany() {
         return holdings.stream()
                 .flatMap(h -> h.getCompanies().stream())
-                .collect(Collectors.toMap(Company::getName,Company::getUsers));
+                .collect(Collectors.toMap(Company::getName, Company::getUsers));
     }
 
     /**
@@ -170,16 +178,12 @@ public class Exercises {
      * wyjątek IllegalArgumentException.
      */
     public static User getUser(final Predicate<User> predicate) {
-        List<User> userPred = holdings.stream()
+        return holdings.stream()
                 .flatMap(h -> h.getCompanies().stream())
                 .flatMap(c -> c.getUsers().stream())
                 .filter(predicate)
-                .limit(1).collect(Collectors.toList());
-        if (userPred.size()==0){
-            throw new IllegalArgumentException("no users with this predicate");
-        }else{
-            return userPred.get(0);
-        }
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     /**
@@ -191,7 +195,7 @@ public class Exercises {
                 .flatMap(c -> c.getUsers().stream())
                 .flatMap(u -> u.getAccounts().stream())
                 .distinct()
-                .collect(Collectors.toMap(Account::getNumber,account -> account));
+                .collect(Collectors.toMap(Account::getNumber, account -> account));
     }
 
     /**
@@ -201,8 +205,8 @@ public class Exercises {
         return holdings.stream()
                 .flatMap(h -> h.getCompanies().stream())
                 .flatMap(c -> c.getUsers().stream())
-                .map(u-> u.getFirstName()+" " + u.getLastName())
-                .reduce("", (result,u) -> result + u + " ")
+                .map(u -> u.getFirstName() + " " + u.getLastName())
+                .reduce("", (result, u) -> result + u + " ")
                 .strip();
     }
 
@@ -211,12 +215,12 @@ public class Exercises {
      * Zosia Psikuta, Zenon Kucowski, Zenek Jawowy ... Alfred Pasibrzuch, Adam Wojcik
      */
     public static void showAllUser() {
-         holdings.stream()
-                 .flatMap(h -> h.getCompanies().stream())
-                 .flatMap(c -> c.getUsers().stream())
-                 .map(u-> u.getFirstName()+" " + u.getLastName())
-                 .sorted(Comparator.reverseOrder())
-                 .forEach(System.out::println);
+        holdings.stream()
+                .flatMap(h -> h.getCompanies().stream())
+                .flatMap(c -> c.getUsers().stream())
+                .map(u -> u.getFirstName() + " " + u.getLastName())
+                .sorted(Comparator.reverseOrder())
+                .forEach(System.out::println);
     }
 
     /**
