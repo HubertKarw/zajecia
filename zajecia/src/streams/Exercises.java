@@ -195,7 +195,10 @@ public class Exercises {
                 .flatMap(c -> c.getUsers().stream())
                 .flatMap(u -> u.getAccounts().stream())
                 .distinct()
-                .collect(Collectors.toMap(Account::getNumber, account -> account));
+                .collect(Collectors.toMap(Account::getNumber, account -> account, (number1,number2)->{
+                    System.out.println("duplicate key found");
+                    return number1;
+                    }));
     }
 
     /**
