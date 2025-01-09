@@ -30,25 +30,27 @@ public class Flight {
         System.out.println(arrivalTime.atZoneSameInstant(ZoneId.of("Europe/Warsaw")));
         flightDuration = this.calculateFlightDuration();
         this.printDuration();
-        if(flightDuration.isNegative()){
+        if (flightDuration.isNegative()) {
             throw new IllegalArgumentException("Cannot time travel");
         }
 
     }
-    public static OffsetDateTime parseIntoOffsetDateTime(String dateTimeString){
+
+    public static OffsetDateTime parseIntoOffsetDateTime(String dateTimeString) {
         String[] times = dateTimeString.split(" ");
         LocalDateTime DateTime = LocalDateTime.parse(times[0].strip());
         ZoneId zoneID = ZoneId.of("Europe/Warsaw");
-        try{
-            zoneID = ZoneId.of(times[1].strip().replace("(","").replace(")",""));
-        }catch (ZoneRulesException zre){
+        try {
+            zoneID = ZoneId.of(times[1].strip().replace("(", "").replace(")", ""));
+        } catch (ZoneRulesException zre) {
             throw new ZoneRulesException("wrong zone");
         }
 
-        return OffsetDateTime.of(DateTime,zoneID.getRules().getOffset(DateTime));
+        return OffsetDateTime.of(DateTime, zoneID.getRules().getOffset(DateTime));
 
     }
-    public void printDuration(){
+
+    public void printDuration() {
         System.out.println(String.format("%d h, %d min, %d sec", this.flightDuration.toHoursPart(), this.flightDuration.toMinutesPart(), this.flightDuration.toSecondsPart()));
     }
 }
