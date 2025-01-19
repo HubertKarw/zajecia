@@ -120,7 +120,6 @@ Obserwuj, kiedy ten komunikat jest wyświetlany podczas działania programu.
     public static String komunikat = "Klasa Samochod została załadowana";
 
     static {
-
         System.out.println(komunikat);
     }
 

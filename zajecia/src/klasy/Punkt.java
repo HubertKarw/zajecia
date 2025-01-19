@@ -25,8 +25,4 @@ public class Punkt {
         return sb.toString();
     }
 
-//    public void resetPoint(){
-//        this.x=0;
-//        this.y=0;
-//    }
 }
