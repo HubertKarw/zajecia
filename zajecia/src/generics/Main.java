@@ -110,7 +110,8 @@ W main przetestuj ją z tablicą Integer[] oraz Double[].
         for (T t : array) {
             sum += t.doubleValue();
         }
-        return sum / array.length;
+//        return sum / array.length;
+        return array.length > 0 ? sum / array.length : 0;
     }
 
     /*

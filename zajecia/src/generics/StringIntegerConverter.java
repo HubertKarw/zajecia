@@ -6,8 +6,7 @@ public class StringIntegerConverter extends TwoWayConverter<String, Integer> {
         try {
             return Integer.valueOf(s);
         } catch (NumberFormatException nfe) {
-            System.out.println("this string cannot be converted");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("this string cannot be converted");
         }
 
     }
