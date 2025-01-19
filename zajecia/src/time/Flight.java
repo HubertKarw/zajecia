@@ -7,8 +7,8 @@ public class Flight {
     private String flightNumber;
     private String departureAirport;
     private String arrivalAirport;
-    private OffsetDateTime departureTime;//strefa czasowa lotniska wylotu
-    private OffsetDateTime arrivalTime;//strefa casowa lotniska przylotu
+    private OffsetDateTime departureTime;
+    private OffsetDateTime arrivalTime;
     private Duration flightDuration;
 
     /*
