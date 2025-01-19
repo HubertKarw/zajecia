@@ -31,7 +31,6 @@ public class AutoPrintInvocationHandler implements InvocationHandler {
                     + "\n\t Value: " + targetField.get(target));
         }
 
-
         return method.invoke(target, args);
     }
 }
