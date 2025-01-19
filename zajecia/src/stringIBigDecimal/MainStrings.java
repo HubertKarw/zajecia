@@ -3,20 +3,22 @@ package stringIBigDecimal;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class MainStrings {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        zadanie1(scanner);
-        zadanie2(scanner);
-        zadanie3(scanner);
-        zadanie4(scanner);
-        zadanie5(scanner);
-        zadanie6(scanner);
-        zadanie7(scanner);
-        zadanie8(scanner);
-        zadanie9(scanner);
+//        zadanie1(scanner);
+//        zadanie2(scanner);
+//        zadanie3(scanner);
+//        zadanie4(scanner);
+//        zadanie5(scanner);
+//        zadanie6(scanner);
+//        zadanie7(scanner);
+//        zadanie8(scanner);
+//        zadanie9(scanner);
         zadanie10(scanner);
     }
 
@@ -58,6 +60,9 @@ Sprawdza, czy oba łańcuchy są identyczne (użyj metody equals()).
         System.out.println("---ZADANIE 2---");
         System.out.println("Input String");
         String str = scanner.nextLine();
+        if(str.length()==0){
+            throw new IllegalArgumentException();
+        }
         System.out.println(String.format("First char is: %c, Last char is: %c", str.charAt(0), str.charAt((int) str.length() - 1)));
         try {
             System.out.println(String.format("substring between 3 and 6: %s", str.substring(2, 6)));
@@ -81,10 +86,11 @@ Wyświetla wynik
         System.out.println("---ZADANIE 3---");
         System.out.println("input String");
         String str = scanner.nextLine();
+        String bigStr = str.toUpperCase(Locale.ROOT);
         //Dodałem nawiasy, żeby było widać usunięte spacje
         System.out.println(String.format("Trimmed String: [%s]", str.trim()));
-        System.out.println(String.format("To Upper Case String: [%s]", str.toUpperCase(Locale.ROOT)));
-        System.out.println(String.format("Converted String: [%s]", str.toUpperCase(Locale.ROOT).trim()));
+        System.out.println(String.format("To Upper Case String: [%s]", bigStr));
+        System.out.println(String.format("Converted String: [%s]", bigStr));
     }
 
     public static void zadanie4(Scanner scanner) {
@@ -125,7 +131,7 @@ Wyświetla oryginalny i zmodyfikowany łańcuch.
         System.out.println("---ZADANIE 5---");
         System.out.println("Input String");
         String str = scanner.nextLine();
-        System.out.println(String.format("Your string: %s, string where a is replaced with e: %s", str, str.replaceAll("a", "e")));
+        System.out.println(String.format("Your string: %s, string where a is replaced with e: %s", str, str.replace("a", "e")));
     }
 
     public static void zadanie6(Scanner scanner) {
@@ -179,6 +185,9 @@ Wyświetla każde słowo w osobnej linii.
         System.out.println("Input list");
         String listString = scanner.nextLine();
         String[] list = listString.split(",");
+        if(list.length == 0){
+            throw new IllegalArgumentException();
+        }
         Arrays.stream(list).forEach(System.out::println);
     }
 
@@ -198,12 +207,8 @@ Wyświetla odpowiedni komunikat.
         System.out.println("Input String");
         String str = scanner.nextLine();
         String palindromeString = str.toLowerCase(Locale.ROOT).replaceAll(" ", "");
-        System.out.println(String.format("String is a palindrome: %b",
-                IntStream.range(0, palindromeString.length() / 2)
-                        .peek(i -> System.out.println(palindromeString.charAt(i)))
-                        .allMatch
-                                (i -> palindromeString.charAt(i) == palindromeString.charAt(palindromeString.length() - i - 1))
-        ));
+        String reversed = new StringBuilder(palindromeString).reverse().toString(); System.out.println(String.format("String is a palindrome: %b", palindromeString.equals(reversed)));
+
     }
 
     public static void zadanie10(Scanner scanner) {
@@ -222,26 +227,36 @@ Wyświetla wynik.
         String text = scanner.nextLine();
         System.out.println("Input word");
         String word = scanner.nextLine();
-        System.out.println(String.format("Text : \"%s\" contains word \"%s\" [%d] times", text, word,
-                ("\"" + text + "\"")
-                        .toLowerCase(Locale.ROOT)
-                        .split(word)
-                        .length - 1
-        ));
+        Pattern patern = Pattern.compile(word,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = patern.matcher(text);
+        int counter = 0;
+        for (String w: text.split(" ")) {
+            if (matcher.find()){
+                counter++;
+            }
+        }
+        System.out.println(String.format("Text : \"%s\" contains word \"%s\" [%d] times", text, word, counter));
+        //  !zostawiam zakomentowane do potestowania!
+//        System.out.println(String.format("Text : \"%s\" contains word \"%s\" [%d] times", text, word,
+//                ("\"" + text + "\"")
+//                        .toLowerCase(Locale.ROOT)
+//                        .split(word)
+//                        .length - 1
+//        ));
         //Jeżeli poszukujemy słowa i wiemy, że będzie ono rodzielone spacją moża użyć streamu/pętli
         // który/która zlicza pojawienia się danego słowa w arrayu zesplitowanym spacją przykład na dole,
         //ale mamy użyć jak najwięcej moetod Stringa
         //                                           |
         //                                           V
-        String[] textArray = text.split(" ");
-        System.out.println();
-        System.out.println(String.format("Text : \"%s\" contains word \"%s\" [%d] times", text, word,
-                Arrays.stream(textArray)
-//                        .peek(s -> System.out.println("peeked:" + s))
-                        .filter(s -> s.equals(word))
-//                        .peek(s -> System.out.println("filtered: " +s))
-                        .count()
-        ));
+//        String[] textArray = text.split(" ");
+//        System.out.println();
+//        System.out.println(String.format("Text : \"%s\" contains word \"%s\" [%d] times", text, word,
+//                Arrays.stream(textArray)
+////                        .peek(s -> System.out.println("peeked:" + s))
+//                        .filter(s -> s.equals(word))
+////                        .peek(s -> System.out.println("filtered: " +s))
+//                        .count()
+//        ));
     }
 
 }

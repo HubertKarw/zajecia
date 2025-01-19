@@ -45,7 +45,12 @@ public class MainBigDecimal {
         System.out.println("---ZADANIE 11---");
         System.out.println("Input Price");
         String price = scanner.nextLine();
-        BigDecimal p = new BigDecimal(price);
+        BigDecimal p = BigDecimal.ZERO;
+        try{
+            p = new BigDecimal(price);
+        }catch (NumberFormatException nfe){
+            nfe.printStackTrace();
+        }
         BigDecimal vat = new BigDecimal(1.23);
         p = p.multiply(vat).setScale(2, RoundingMode.HALF_UP);
         System.out.println("Your price = " + p);
@@ -66,7 +71,13 @@ public class MainBigDecimal {
          */
         System.out.println("---ZADANIE 12---");
         System.out.println("Input amount in dollars");
-        BigDecimal money = new BigDecimal(scanner.nextLine());
+        String moneyStr = scanner.nextLine();
+        BigDecimal money = BigDecimal.ZERO;
+        try{
+            money = new BigDecimal(moneyStr);
+        }catch (NumberFormatException nfe){
+            nfe.printStackTrace();
+        }
         BigDecimal usdToEuroExchangeRate = new BigDecimal(0.85);
         money = money.multiply(usdToEuroExchangeRate).setScale(2, RoundingMode.HALF_UP);
         System.out.println("ammount in euros = " + money + "euro");
@@ -92,7 +103,6 @@ public class MainBigDecimal {
         System.out.println(bigDecDouble);
         System.out.println(bigDecString.equals(bigDecDouble));
         System.out.println(bigDecString.compareTo(bigDecDouble));
-
     }
 
     public static void zadanie14() {
@@ -116,7 +126,7 @@ public class MainBigDecimal {
         System.out.println("doubles in BigDecimal(value of): " + (BigDecimal.valueOf(0.1).add(BigDecimal.valueOf(0.1).add(BigDecimal.valueOf(0.1)))));
         System.out.println("Str in BigDecimal: " + (stringForAddition.add(stringForAddition).add(stringForAddition)));
         System.out.println("double in BigDecimal: " + (stringForAddition2.add(stringForAddition2).add(stringForAddition2)));
-
+        // KIEDY UZYWAMY DOUBLA A NIE STRINGA 0.1 NIE JEST ROWNE DOKLADNIE 0.1 DLATEGO LEPIEJ JEST STWORZYC BIG DECIMALE ZE STRINGÓW
     }
 
     public static void zadanie15(Scanner scanner) {
@@ -170,7 +180,7 @@ public class MainBigDecimal {
         int sum = 0;
         try{
             for (int i = 0; i < 10; i++) {
-                sum += (int) isbn.toPlainString().charAt(i) * i;
+                sum += Integer.valueOf(isbn.toPlainString().charAt(i)) * i;
             }
             if (sum % 11 == 0) {
                 System.out.println("valid ISBN");
@@ -200,7 +210,7 @@ public class MainBigDecimal {
         System.out.println("---ZADANIE 17---");
         System.out.println("input STRING");
         String text = scanner.nextLine();
-        System.out.println(text.replaceAll("[!.,\"\'?]", "").replaceAll("\s+", "\s"));
+        System.out.println(text.replaceAll("[!.,\"\'?]", "").replaceAll("\\s+", " "));
     }
 
     public static void zadanie18(Scanner scanner) {
@@ -219,7 +229,9 @@ public class MainBigDecimal {
         String text = scanner.nextLine();
         //[a-z]^[samogłoski]
         Matcher matcher = Pattern.compile("[aeouiąęó]").matcher(text.toLowerCase(Locale.ROOT));
-        Matcher matcher2 = Pattern.compile("[^aeouiąęó]").matcher(text.toLowerCase(Locale.ROOT));// \w
+//        Matcher matcher2 = Pattern.compile("([b-df-hj-np-tv-z])").matcher(text.toLowerCase(Locale.ROOT));//
+//        Matcher matcher2 = Pattern.compile("([a-z&&[^aeouiąęó]])").matcher(text.toLowerCase(Locale.ROOT));// nie zlicza polskich znaków ale moża je dodać dopisując je
+        Matcher matcher2 = Pattern.compile("([\\p{L}&&[^aeouiąęó]])").matcher(text.toLowerCase(Locale.ROOT));// to powinno zliczać wszystkie litery
         System.out.println(matcher.results().count());
         System.out.println(matcher2.results().count());
     }
@@ -259,9 +271,24 @@ public class MainBigDecimal {
          */
         System.out.println("---ZADANIE 20---");
         System.out.println("input 1st number");
-        BigDecimal num1 = new BigDecimal(scanner.nextLine());
+        String num1D = scanner.nextLine();
+        BigDecimal num1 = BigDecimal.ZERO;
+        try{
+            num1 = new BigDecimal(num1D);
+        }catch (NumberFormatException nfe){
+            nfe.printStackTrace();
+        }
         System.out.println("input 2nd number");
-        BigDecimal num2 = new BigDecimal(scanner.nextLine());
+        String num2D = scanner.nextLine();
+        BigDecimal num2 = BigDecimal.ZERO;
+        try{
+            num2 = new BigDecimal(num2D);
+        }catch (NumberFormatException nfe){
+            nfe.printStackTrace();
+        }
+        if (num2.equals(BigDecimal.ZERO)){
+            throw new IllegalArgumentException("cannot divide by zero");
+        }
         System.out.println(num1.divide(num2, 2, RoundingMode.HALF_DOWN));
         System.out.println(num1.divide(num2, 2, RoundingMode.HALF_UP));
         System.out.println(num1.divide(num2, 2, RoundingMode.FLOOR));
