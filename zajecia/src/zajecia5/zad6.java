@@ -1,3 +1,5 @@
+package zajecia5;
+
 public class zad6 {
     public static void main(String[] args) {
         int num = 0;

@@ -32,17 +32,17 @@ public class main {
         int liczbaSamochodow = Samochod.pobierzLiczbeSamochodow();
         System.out.println("liczba samochodów: " + liczbaSamochodow);
         /*
-        zad5
+        zajecia5.zad5
          */
         Samochod car3 = new Samochod();
         System.out.println("Marka: " + car3.getMarka() + "\nModel: " + car3.getModel());
         /*
-        zad6
+        zajecia5.zad6
          */
         car3.wyswietlInformacje();
         System.out.println(Samochod.pobierzLiczbeSamochodow());
         /*
-        zad7
+        zajecia5.zad7
          */
         car3.przyspiesz(100);
         car3.przyspiesz(100.000);

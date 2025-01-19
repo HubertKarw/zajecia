@@ -1,3 +1,5 @@
+package zajecia5;
+
 public class zad12 {
     public static void main(String[] args) {
         int weight = 18;
