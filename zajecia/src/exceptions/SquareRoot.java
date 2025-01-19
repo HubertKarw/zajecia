@@ -50,7 +50,7 @@ public class SquareRoot {
         return sqrt;
 
     }
-    public static void assertValidArgument(int number) throws IllegalArgumentException{
+    public static void assertValidArgument(int number){
          if(number < 0){
              throw new IllegalArgumentException("Error: Number cannot be negative");
          }
