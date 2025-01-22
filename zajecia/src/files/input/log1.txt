@@ -1,0 +1,5 @@
+INFO: Uruchomienie aplikacji
+DEBUG: Ładowanie konfiguracji
+INFO: Połączenie z bazą danych
+WARN: Brak indeksu na tabeli
+INFO: Zakończono przetwarzanie danych
