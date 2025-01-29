@@ -1,0 +1,5 @@
+DEBUG: Start procedury
+ERROR: Nie znaleziono pliku konfiguracyjnego
+INFO: Operacja zakończona pomyślnie
+INFO: Wysłano raport
+ERROR: Limit przekroczony
