@@ -14,11 +14,7 @@ public class Magazine extends Publication implements LibraryResource {
 
     public Magazine(String title, String author, int issueNumber) {
         super(title, author);
-        if (issueNumber >= 0) {
-            this.issueNumber = issueNumber;
-        } else {
-            this.issueNumber = 1;
-        }
+        this.issueNumber = Math.max(1,issueNumber);
         this.available = true;
     }
 

@@ -8,14 +8,11 @@ Utwórz klasy Bibliotekarz (Librarian) i Czytelnik (Reader),
 które dziedziczą po Uzytkownik i implementują metodę pokazUprawnienia(), wyświetlając różne uprawnienia w zależności od roli.
  */
 public abstract class User extends Person {
-    private String firstName;
-    private String lastName;
+
     private boolean hasAccount;
 
     public User(String firstName, String lastName) {
         super(firstName, lastName);
-
-
     }
 
     public boolean isHasAccount() {

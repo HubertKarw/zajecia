@@ -1,5 +1,7 @@
 package OOP;
 
+import java.util.Objects;
+
 /*
 Zadanie 2
 Utwórz klasę Ksiazka (Book), która dziedziczy po klasie Publikacja (Publication).
@@ -23,6 +25,15 @@ public class Book extends Publication implements LibraryResource {
         return reservedList;
     }
 
+<<<<<<< HEAD
+=======
+    public void printReservedList() {
+        for (User u : reservedList) {
+            System.out.println(u);
+        }
+    }
+
+>>>>>>> klasy
     public void reserve(User user) {
         LibraryResource.super.reserve();
         for (int i = 0; i < reservedList.length; i++) {
@@ -35,11 +46,15 @@ public class Book extends Publication implements LibraryResource {
 
     public Book(String title, String author, int pageCount) {
         super(title.length() < 3 ? "nieznany" : title, author);
+<<<<<<< HEAD
         if (pageCount > 0) {
             this.pageCount = pageCount;
         } else {
             this.pageCount = 100;
         }
+=======
+        this.pageCount = Math.max(pageCount,100);
+>>>>>>> klasy
         this.available = true;
     }
 
@@ -53,7 +68,11 @@ public class Book extends Publication implements LibraryResource {
     }
 
     public boolean hasEmpty() {
+<<<<<<< HEAD
         if (title.equals("") || title.isEmpty() || author.equals("") || author.isEmpty()) {
+=======
+        if (title.isBlank() || author.isBlank() || Objects.isNull(this)) {
+>>>>>>> klasy
             return true;
         }
         return false;
