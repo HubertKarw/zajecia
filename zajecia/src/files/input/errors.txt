@@ -1,0 +1,5 @@
+ERROR: Błąd autoryzacji
+ERROR: Przekroczono czas oczekiwania
+WARN: Mała ilość pamięci
+ERROR: Błąd nieznany
+INFO: Koniec logów
